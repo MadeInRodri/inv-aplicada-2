@@ -1,0 +1,35 @@
+# ====================================
+# DEPENDENCIAS
+# ====================================
+/vendor/
+
+# ====================================
+# ARCHIVOS DE ENTORNO Y LOGS
+# ====================================
+# Archivos de configuración locales o contraseñas
+.env
+.env.local
+.env.*.local
+
+# Archivos de registro de errores de PHP o del servidor
+*.log
+error_log
+php_errors.log
+
+# ====================================
+# SISTEMA OPERATIVO
+# ====================================
+Thumbs.db
+Desktop.ini
+
+
+# ====================================
+# EDITORES DE CÓDIGO (IDE)
+# ====================================
+.vscode/
+
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
