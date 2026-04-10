@@ -7,41 +7,79 @@ use Psr\Http\Message\ServerRequestInterface;
 use React\Socket\SocketServer;
 use App\Config\Database;
 use App\Controllers\FileController;
-// use App\Controllers\DataController; // Lo descomentaremos cuando hagamos el CRUD
+use App\Controllers\DataController;
 
 // Inicializar la conexión asíncrona a la DB
 $db = Database::getConnection();
 
 // Configurar el Servidor HTTP
+//ServerRequestInterface es un interface que sirve como una abstraccion de una request
+//O sea tiene como propiedades lo que tendría una peticiión normal 
 $server = new HttpServer(function (ServerRequestInterface $request) use ($db) {
     $path = $request->getUri()->getPath();
     $method = $request->getMethod();
 
     echo "[" . date('H:i:s') . "] $method $path\n";
-
+    
     try {
         switch ($path) {
             // --- RUTAS ESTÁTICAS ---
-            case '/':
-                return FileController::serve(__DIR__ . '/public/index.html', 'text/html');
+            
             case '/contact.html':
-                return FileController::serve(__DIR__ . '/public/contact.html', 'text/html');
+                return FileController::serve(__DIR__ . '/public/contact/contact.html', 'text/html');
             case '/admin.html':
-                return FileController::serve(__DIR__ . '/public/admin.html', 'text/html');
+                return FileController::serve(__DIR__ . '/public/admin/admin.html', 'text/html');
             case '/style.css':
                 return FileController::serve(__DIR__ . '/public/style.css', 'text/css');
+            case '/contactValidator.js':
+                return FileController::serve(__DIR__ . '/public/contact/contactValidator.js', 'application/javascript');
+            case '/adminValidator.js':
+                return FileController::serve(__DIR__ . '/public/admin/adminValidator.js', 'application/javascript');
+            
 
             // --- RUTAS DINÁMICAS (CRUD) ---
-            case '/data':
-                // Aquí delegaremos a DataController::handleRequest($request, $db);
-                return Response::json(['mensaje' => 'Ruta /data lista para recibir operaciones CRUD']);
+                
+            case '/':
+                return DataController::onLoadIndex(__DIR__ . '/public/index.html', $db);
+            case '/service':
+                
+                if($method == 'GET'){
+                    $queryParams = $request->getQueryParams();
+                    $id = $queryParams['id'] ?? null;
+
+                    if ($id) {
+                        
+                        return DataController::serviceById($id, $db);
+                    }
+
+                    return DataController::index($db);
+                }
+
+                if($method == "POST"){
+                   return DataController::createServcice($db, $request);
+                }
+
+                if($method == 'PATCH'){
+                    return DataController::patchSercice($db, $request);
+                }
+                if($method == 'DELETE'){
+                    return DataController::deleteService($db, $request);
+                }
+
+                
+
+            case '/contacts':
+                if($method == 'POST'){
+                    return DataController::createContact($request, $db);
+                }
 
             default:
                 return new Response(404, ['Content-Type' => 'application/json'], json_encode(['error' => 'Ruta no encontrada']));
         }
     } catch (\Exception $e) {
         // Control de errores global (Requerimiento 2)
-        return new Response(500, ['Content-Type' => 'application/json'], json_encode(['error' => 'Error interno: ' . $e->getMessage()]));
+        
+        return new Response(500, ['Content-Type' => 'application/json'], json_encode(['error PESIMO' => 'Error interno: ' . $e->getMessage()]));
     }
 });
 

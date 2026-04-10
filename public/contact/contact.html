@@ -13,7 +13,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style.css" />
   </head>
   <body class="dark-layout">
     <div class="container">
@@ -27,7 +27,7 @@
           <i class="bi bi-chat-dots"></i> Envíanos un mensaje
         </h2>
 
-        <form id="contactForm" action="/data" method="POST">
+        <form id="contactForm" action="/contacts" method="POST">
           <div class="form-row">
             <div class="form-group">
               <label for="firstName" class="form-label">
@@ -37,7 +37,7 @@
               <input
                 type="text"
                 id="firstName"
-                name="firstName"
+                name="nombre"
                 class="form-input"
                 placeholder="Ej: Juan"
                 required
@@ -52,7 +52,7 @@
               <input
                 type="text"
                 id="lastName"
-                name="lastName"
+                name="apellido"
                 class="form-input"
                 placeholder="Ej: Pérez"
                 required
@@ -83,7 +83,7 @@
               <input
                 type="tel"
                 id="phone"
-                name="phone"
+                name="telefono"
                 class="form-input"
                 placeholder="1234-5678"
               />
@@ -95,7 +95,7 @@
               <i class="bi bi-bookmark"></i> Asunto
               <span class="required">*</span>
             </label>
-            <select id="subject" name="subject" class="form-select" required>
+            <select id="subject" name="asunto" class="form-select" required>
               <option value="">Selecciona una opción</option>
               <option value="queja">Queja o Sugerencia</option>
               <option value="pedido">Consulta de Pedido</option>
@@ -125,5 +125,6 @@
         </p>
       </div>
     </div>
+    <script src ='/contactValidator.js'></script>
   </body>
 </html>

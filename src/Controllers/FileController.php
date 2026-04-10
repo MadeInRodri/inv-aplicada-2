@@ -3,9 +3,11 @@
 namespace App\Controllers;
 
 use React\Http\Message\Response;
+use React\Mysql\MysqlClient;
 
 class FileController {
-    public static function serve(string $path, string $contentType): Response {
+    public static function serve(string $path, string $contentType): Response 
+    {
         //Convierte la ruta en absoluta
         $realPath = realpath($path);
 
@@ -14,7 +16,7 @@ class FileController {
             return new Response(404, ['Content-Type' => 'text/plain'], "404 - Archivo no encontrado");
         }
 
-        //Toma el contenido del archivo
+        //Toma el contenido del archivo y lo devuelve como un string!
         $content = file_get_contents($realPath);
         
         //Trata de leerlo
@@ -25,4 +27,7 @@ class FileController {
         //Lo devuelve
         return new Response(200, ['Content-Type' => $contentType], $content);
     }
+
+
+    
 }
