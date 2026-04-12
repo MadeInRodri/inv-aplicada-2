@@ -9,20 +9,20 @@ Este proyecto implementa un sitio web dinámico utilizando un servidor web no bl
 El proyecto utiliza una adaptación del patrón MVC (Modelo-Vista-Controlador) orientada a eventos para mantener el código modular y escalable:
 
 INVESTIGACION-APLICADA-2/
-├── public/ Archivos estáticos y vistas accesibles por el cliente
-│ ├── index.html Punto de entrada estático (Inicio)
-│ ├── contact.html Formulario de captura de prospectos
-│ ├── admin.html Panel de administración CRUD
-│ └── style.css Hoja de estilos principal
-├── src/ Lógica de la aplicación (Autocargada vía PSR-4)
+├── public/ # Archivos estáticos y vistas accesibles por el cliente
+│ ├── index.html # Punto de entrada estático (Inicio)
+│ ├── contact.html # Formulario de captura de prospectos
+│ ├── admin.html # Panel de administración CRUD
+│ └── style.css # Hoja de estilos principal
+├── src/ # Lógica de la aplicación (Autocargada vía PSR-4)
 │ ├── Config/
-│ │ └── Database.php Configuración y fábrica de conexión MySQL diferida (Lazy)
+│ │ └── Database.php # Configuración y fábrica de conexión MySQL diferida (Lazy)
 │ └── Controllers/
-│ ├── FileController.php Controlador para servir archivos sin detener el Event Loop
-│ └── DataController.php Controlador asíncrono para operaciones CRUD
-├── vendor/ Dependencias gestionadas por Composer
-├── composer.json Configuración de dependencias y autoloader
-└── server.php Punto de entrada: Inicia el Event Loop y enruta las peticiones
+│ ├── FileController.php # Controlador para servir archivos sin detener el Event Loop
+│ └── DataController.php # Controlador asíncrono para operaciones CRUD
+├── vendor/ # Dependencias gestionadas por Composer
+├── composer.json # Configuración de dependencias y autoloader
+└── server.php # Punto de entrada: Inicia el Event Loop y enruta las peticiones
 
 ---
 
