@@ -23,7 +23,7 @@
           <i class="bi bi-plus-circle"></i> Nuevo Servicio
         </h2>
 
-        <form id="crudForm" action = '/service' method="post">
+        <form id="crudForm" action="/service" method="post">
           <input type="hidden" id="serviceId" name="id" />
 
           <div class="form-group">
@@ -80,10 +80,7 @@
           <i class="bi bi-card-list"></i> Servicios Actuales
         </h2>
 
-        <div id="servicesList">
-          
-
-        </div>
+        <div id="servicesList"></div>
       </div>
 
       <div class="footer">
@@ -95,69 +92,72 @@
       </div>
     </div>
     <!--MODAL PA EDITAR-->
-    <section id = 'layoutModal'>
-        <div class="modal-overlay" id="modalEdit">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <i class="bi bi-pencil-square" style="font-size: 1.5rem;"></i>
-                    <h2 style="margin:0">Editar Servicio</h2>
-                </div>
+    <section id="layoutModal">
+      <div class="modal-overlay" id="modalEdit">
+        <div class="modal-content">
+          <div class="modal-header">
+            <i class="bi bi-pencil-square" style="font-size: 1.5rem"></i>
+            <h2 style="margin: 0">Editar Servicio</h2>
+          </div>
 
-                <form id="formEditService" action="/service">
-                      <label>Id: </label>
-                      <input 
-                      id = 'idService'
-                       type = number 
-                       name = id  
-                       class="form-control" 
-                       required>
+          <form id="formEditService" action="/service">
+            <label>Id: </label>
+            <input
+              id="idService"
+              type="number"
+              name="id"
+              class="form-control"
+              required
+            />
 
-                    <div class="form-group">
-                        <label>Nombre del Servicio <span>*</span></label>
-                        <input 
-                        name = 'nombre'
-                        type="text" 
-                        id="editNombre" 
-                        class="form-control" 
-                        required 
-                        placeholder="Ej: Consultoría TI">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Descripción <span>*</span></label>
-                        <textarea 
-                        name = 'descripcion'
-                        id="editDescripcion" 
-                        class="form-control" 
-                        rows="4" 
-                        required 
-                        placeholder="Detalles del servicio..."></textarea>
-                    </div>
-
-                    <div class="form-group">
-                        <label>Estadoasdasdasds</label>
-                        <select 
-                        id="editEstado" 
-                        class="form-control"
-                        name = 'estado'
-                        >
-                            <option selected value="Activo">Activo</option>
-                            <option value="Inactivo">Inactivo</option>
-                        </select>
-                    </div>
-
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-cancel" onclick="closeModal()">
-                            <i class="bi bi-x-circle"></i> Cancelar
-                        </button>
-                        <button type="submit" class="btn btn-save">
-                            <i class="bi bi-box-arrow-in-down"></i> Actualizar Servicio
-                        </button>
-                    </div>
-                </form>
+            <div class="form-group">
+              <label>Nombre del Servicio <span>*</span></label>
+              <input
+                name="nombre"
+                type="text"
+                id="editNombre"
+                class="form-control"
+                required
+                placeholder="Ej: Consultoría TI"
+              />
             </div>
+
+            <div class="form-group">
+              <label>Descripción <span>*</span></label>
+              <textarea
+                name="descripcion"
+                id="editDescripcion"
+                class="form-control"
+                rows="4"
+                required
+                placeholder="Detalles del servicio..."
+              ></textarea>
+            </div>
+
+            <div class="form-group">
+              <label>Estado</label>
+              <select id="editEstado" class="form-control" name="estado">
+                <option selected value="activo">Activo</option>
+                <option value="inactivo">Inactivo</option>
+              </select>
+            </div>
+
+            <div class="btn-group">
+              <button
+                type="button"
+                class="btn btn-cancel"
+                onclick="closeModal()"
+              >
+                <i class="bi bi-x-circle"></i> Cancelar
+              </button>
+              <button type="submit" class="btn btn-save">
+                <i class="bi bi-box-arrow-in-down"></i> Actualizar Servicio
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </section>
-    <script src ='adminValidator.js'></script>
+    <script src="adminValidator.js"></script>
   </body>
 </html>

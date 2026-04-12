@@ -46,7 +46,11 @@ class ServiceModel {
         );
     }
     public static function allService(MysqlClient $db): PromiseInterface {
-        return $db->query('SELECT * from servicios');
+        return $db->query("SELECT * from servicios");
+    }
+
+    public static function allActiveService(MysqlClient $db): PromiseInterface {
+        return $db->query("SELECT * from servicios WHERE estado = 'activo'");
     }
 
 }

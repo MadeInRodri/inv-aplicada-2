@@ -20,7 +20,7 @@ class DataController {
     public static function onLoadIndex(string $path, MysqlClient $db){
        
         $realPath = realpath($path);
-        return ServiceModel::allService($db)->then(
+        return ServiceModel::allActiveService($db)->then(
             function (MysqlResult $result) use($realPath) {
                 $servicesHtml = '';
 
@@ -64,13 +64,13 @@ class DataController {
                 return new Response(200, ['Content-Type' => 'application/json'], json_encode($command->resultRows));
             },
             function (Exception $er){
-                return new Response(69, ['Content-Type' => 'application/json'],'Noo mi compa');
+                return new Response(69, ['Content-Type' => 'application/json'],'Hubo un error');
             }
         );
        
     }
 
-    public static function createServcice(MysqlClient $db, ServerRequestInterface $request){
+    public static function createService(MysqlClient $db, ServerRequestInterface $request){
         try{
             $service = $request->getParsedBody();
 

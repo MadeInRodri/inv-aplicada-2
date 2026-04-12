@@ -56,7 +56,7 @@ $server = new HttpServer(function (ServerRequestInterface $request) use ($db) {
                 }
 
                 if($method == "POST"){
-                   return DataController::createServcice($db, $request);
+                   return DataController::createService($db, $request);
                 }
 
                 if($method == 'PATCH'){
@@ -71,6 +71,7 @@ $server = new HttpServer(function (ServerRequestInterface $request) use ($db) {
             case '/contacts':
                 if($method == 'POST'){
                     return DataController::createContact($request, $db);
+
                 }
 
             default:
